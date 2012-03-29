@@ -19,4 +19,42 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
+#include <iostream>
+#include <fstream>
+#include <stdio.h>
+#define BUFFERSIZE 100
 
+using namespace std;
+
+int main(int argc, char* argv []) {
+
+  char *inFileName;
+  char *outFileName;
+
+  if (argc < 3) {
+    cout << "Missing options" << endl;
+    return 1;
+  }
+
+  if (argc > 3) {
+    cout << "Too much parameters" <<endl;
+    return 1;
+  }
+
+  inFileName = argv[1];
+  outFileName = argv[2];
+  fstream inFile(inFileName);
+  ofstream outFile(outFileName);
+
+  char buffer; 
+  char binArray[13];
+  while ( inFile.good()) {
+    inFile.get(buffer);
+    printf("%x\n", buffer);
+  }
+
+  outFile.close();
+  inFile.close();
+  return 0;
+
+}
