@@ -1,27 +1,8 @@
-/**
- * 
- *
- * Copyright (C) 2010 -  Yun-Da Tsai <dese5211@gmail.com>
- * All Rights reserved.
- *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software Foundation,
- * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
- */
-
 #include <iostream>
 #include <fstream>
+#include <vector>
 #include <stdio.h>
+#include "huffmanCode.h"
 #define BUFFERSIZE 100
 
 using namespace std;
@@ -46,15 +27,28 @@ int main(int argc, char* argv []) {
   fstream inFile(inFileName);
   ofstream outFile(outFileName);
 
-  char buffer; 
-  char binArray[13];
+  char oneChar; 
+  int table[128];
+  for (int i = 0; i < 128; i++) table[i] = 0;
+
   while ( inFile.good()) {
-    inFile.get(buffer);
-    printf("%x\n", buffer);
+    inFile.get(oneChar);
+    if ((int)oneChar == 10) continue; 
+    table[(int)oneChar]++;
+//    printf("%d\n", oneChar);
   }
+
+  HuffmanCode huffmanCode(table);
+//  huffmanCode.displaySource();
+  huffmanCode.constructTable();
+  huffmanCode.generateHuffmanCode();
+  huffmanCode.displayHuffmanTable();
+
 
   outFile.close();
   inFile.close();
   return 0;
+
+
 
 }
