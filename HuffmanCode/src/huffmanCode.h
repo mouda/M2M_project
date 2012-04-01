@@ -16,19 +16,20 @@ public:
   void constructTable();
   bool findTwoSmallestAddTogether( int column);
   void generateHuffmanCode();
-  char* HuffmanEncoder(char* input);
+  string HuffmanEncoder(char input);
 
 
   void displayTable(); 
   void displayTemp();
   void displayHuffmanTable();
+  string getHuffmanTable();
 
 private:
-  int count;
-  int totalExistingTimes;
-  int **x;
-  int **temp;
-  int **dp;
-  string *HuffmanCodeTable;
+  int count;                //total ASCII chars
+  int totalExistingTimes;   //total words of the article
+  int **x;                  //store the statistic result
+  int **temp;               //store the dp trace
+  int **dp;                 //DP table
+  string *HuffmanCodeTable; //the Huffman code table
 
 };

@@ -167,8 +167,16 @@ void HuffmanCode::generateHuffmanCode()
 // @Provides: mouda 
 // -------------------------------------------------------------------------- //
 
-char* HuffmanCode::HuffmanEncoder( char* )
+string HuffmanCode::HuffmanEncoder( char input)
 {
+  int i = 0;
+  for (; i < count; i++)
+    if ( (int)input == x[i][0] ){
+      HuffmanCodeTable[i];  
+      break;
+    } 
+  return HuffmanCodeTable[i];
+
 
 }
 
@@ -220,6 +228,23 @@ void HuffmanCode::displayHuffmanTable()
   for (int i = 0; i < count; i++) {
     cout <<(char)x[i][0] << ": " << HuffmanCodeTable[i] << endl;
   }
+}
+
+// -------------------------------------------------------------------------- //
+// @Description: return the string storing Huffman Code Table
+// @Provides: mouda 
+// -------------------------------------------------------------------------- //
+
+string HuffmanCode::getHuffmanTable()
+{
+  string Table;
+  for (int i = 0; i < count; i++) {
+    Table.push_back((char)x[i][0]);
+    Table+=": ";
+    Table+=HuffmanCodeTable[i];
+    Table.push_back('\n');
+  }
+  return Table;
 }
 
 

@@ -2,6 +2,7 @@
 #include <fstream>
 #include <vector>
 #include <stdio.h>
+#include <string>
 #include "huffmanCode.h"
 #define BUFFERSIZE 100
 
@@ -13,12 +14,12 @@ int main(int argc, char* argv []) {
   char *outFileName;
 
   if (argc < 3) {
-    cout << "Missing options" << endl;
+    cerr << "Missing options" << endl;
     return 1;
   }
 
   if (argc > 3) {
-    cout << "Too much parameters" <<endl;
+    cerr << "Too much parameters" <<endl;
     return 1;
   }
 
@@ -34,15 +35,31 @@ int main(int argc, char* argv []) {
   while ( inFile.good()) {
     inFile.get(oneChar);
     if ((int)oneChar == 10) continue; 
+    if ((int)oneChar < 0 || (int)oneChar > 127) {
+      cerr << "the input must be ANCII code!!" << endl;
+      return 1;
+    }
     table[(int)oneChar]++;
-//    printf("%d\n", oneChar);
   }
 
   HuffmanCode huffmanCode(table);
 //  huffmanCode.displaySource();
   huffmanCode.constructTable();
   huffmanCode.generateHuffmanCode();
-  huffmanCode.displayHuffmanTable();
+//  huffmanCode.displayHuffmanTable();
+  outFile << "# Huffman Code Table" << endl;
+  outFile << huffmanCode.getHuffmanTable();
+  outFile << "# The code word" << endl;
+
+  char buffer[10];
+  string result;
+  inFile.close();
+  inFile.open(inFileName, ifstream::in);
+  while ( inFile.good()) {
+    inFile.get(oneChar);
+    if ((int)oneChar == 10) continue; 
+    outFile <<  huffmanCode.HuffmanEncoder(oneChar);
+  }
 
 
   outFile.close();
