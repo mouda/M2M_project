@@ -1,13 +1,13 @@
 CXX=g++
 DBFLAGS=-g -D_DEBUG_ON_
 
-all: encoder
+all: main
 
-encoder: encoder.o huffmanCode.o int2bin.o
-	$(CXX) $(DBFLAGS)  encoder.o  huffmanCode.o int2bin.o -o ../../bin/encoder
+main: main.o huffmanCode.o int2bin.o
+	$(CXX) $(DBFLAGS)  main.o  huffmanCode.o int2bin.o -o ../../bin/main
 
-encoder.o: encoder.cpp
-	$(CXX) $(DBFLAGS) -c  encoder.cpp -o encoder.o
+main.o: main.cpp
+	$(CXX) $(DBFLAGS) -c  main.cpp -o main.o
 
 huffmanCode.o:  huffmanCode.cpp
 	$(CXX) $(DBFLAGS) -c  huffmanCode.cpp 
@@ -16,5 +16,5 @@ int2bin.o:  int2bin.cpp
 	$(CXX) $(DBFLAGS) -c  int2bin.cpp
 
 clean:
-		rm -rf *.o *.gch ../../bin/encoder
+		rm -rf *.o *.gch ../../bin/main
 
