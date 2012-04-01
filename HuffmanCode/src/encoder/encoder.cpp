@@ -47,9 +47,9 @@ int main(int argc, char* argv []) {
   huffmanCode.constructTable();
   huffmanCode.generateHuffmanCode();
 //  huffmanCode.displayHuffmanTable();
-  outFile << "# Huffman Code Table" << endl;
+  outFile << "# Huffman_encoding" << endl;
   outFile << huffmanCode.getHuffmanTable();
-  outFile << "# The code word" << endl;
+  outFile << "# end" << endl;
 
   char buffer[10];
   string result;

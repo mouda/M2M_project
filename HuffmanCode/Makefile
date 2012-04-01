@@ -1,4 +1,6 @@
 all:
-	cd src && make;
+	cd src/encoder && make;
+	cd src/decoder && make;
 clean:
-	cd src && make clean;
+	cd src/encoder && make clean;
+	cd src/decoder && make clean;
