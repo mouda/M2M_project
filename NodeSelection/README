@@ -1,0 +1,11 @@
+
+1. Simulation scenario
+	a. generate N number nodes and determine their position randomly, all of	them should stay in a circle with radius 300m. The cluster head is at 
+	the central of circle. The way we generate node reside in the circle 
+	uniformally is as follows:
+	r = R*sqrt(rand1,N); theta = 2*pi*rand(1,N);
+	x = r.*cost(theta); theta = 2*pi*rand(1,N);
+	
+	b.
+
+2. Cross entropy algorithm
