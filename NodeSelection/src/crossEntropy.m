@@ -30,8 +30,7 @@ for i = 1 : length(notGood)
     end
 end
 for i = 1 : 8*N
-    S = SIGMA(find(x(i)==1),find(x(i)==1))
-    
+    S = SIGMA(find(x(i,:)==1),find(x(i,:)==1));
 end
 
 
