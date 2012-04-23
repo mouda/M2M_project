@@ -10,6 +10,7 @@ delta = 2^(-8);
 [ x, y ] = nodeGenerate(N,300);
 G(1:N)  = 10^(-13.11) .* ((sqrt(x.*x + y.*y)*10^(-3)).^(-4.281));
 
+
 % setting up the scenraio
 % construct the distance matrix d
 for i = 1 : N
@@ -26,3 +27,8 @@ sigma(1:length(x)) = 0.5;
 [ covar] = covariance(sigma,d,2500);
 
 [ maxInfo nodeSelect ] = crossEntropy( covar , sigma, delta, G, P, W, N0, T );
+%SIGMA = covar;
+
+scatter(x,y);
+hold on
+scatter(x(nodeSelect == 1),y(nodeSelect == 1),5, [1 0 0]);
