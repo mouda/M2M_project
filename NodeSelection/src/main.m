@@ -25,4 +25,4 @@ sigma(1:length(x)) = 0.5;
 
 [ covar] = covariance(sigma,d,2500);
 
-crossEntropy( covar , sigma, delta, G, P, W, N0, T )
+[ maxInfo nodeSelect ] = crossEntropy( covar , sigma, delta, G, P, W, N0, T );
