@@ -4,3 +4,5 @@ This sub-directory is used to implement Huffman encoder and decoder
 usage:
   1. make
   2. bin/encoder  inputName outputName
+  3. bin/decoder	inputName
+	4. bin/dataReader inputName outputName 
