@@ -3,3 +3,4 @@
 #./huffman_decoding ../outputs/test_1_code.txt
 #./huffman_decoding ../outputs/test_3_code.txt
 ./dataReader ../inputs/RNG.out  ../outputs/result.txt
+#cat ../outputs/result.txt

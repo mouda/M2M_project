@@ -3,6 +3,8 @@
 // @Provides: mouda 
 // -------------------------------------------------------------------------- //
 #include <bitset>
+#include <map>
+#include <string>
 
 
 // -------------------------------------------------------------------------- //
@@ -16,11 +18,14 @@ class Node{
     ~Node();
     void initialize( unsigned length, std::bitset<9>* inputs);
     void resetNode();
+    std::string reportData( unsigned index);
     double getAverageCodeLength(){return _avergthCodeLength;}
 
   private:
     std::bitset<9>* _data;
-    unsigned **_statisticTable;
+    std::map<std::string , unsigned> _mapTable;
+    unsigned *_statisticTable;
+    unsigned _dataLength;
     double _avergthCodeLength;      // As entropy if huffman encoder is used
 };
 
@@ -34,7 +39,9 @@ class NodeMgr{
     NodeMgr( unsigned nodeNum, unsigned dataLength, std::bitset<9>* inputs);
     ~NodeMgr();
     double getAverageCodeLength(){return _avergthCodeLength;}
+    void reportNode();
   private:
     Node *_allNodes;
+    unsigned _nodeNumber;
     double _avergthCodeLength;      // As entropy if huffman encoder is used 
 };
