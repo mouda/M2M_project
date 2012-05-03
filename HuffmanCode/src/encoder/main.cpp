@@ -2,6 +2,7 @@
 #include <fstream>
 #include <vector>
 #include <stdio.h>
+#include <stdlib.h>
 #include <string>
 #include "huffmanCode.h"
 #define BUFFERSIZE 100
@@ -12,25 +13,34 @@ int main(int argc, char* argv []) {
 
   char *inFileName;
   char *outFileName;
+  int numberOfElements;
+  int *table;
 
-  if (argc < 3) {
+  if (argc < 5) {
     cerr << "Missing options" << endl;
     return 1;
   }
 
-  if (argc > 3) {
+  if (argc > 5) {
     cerr << "Too much parameters" <<endl;
     return 1;
   }
 
-  inFileName = argv[1];
-  outFileName = argv[2];
+  if (argv[1][0] != '-' || argv[1][1] != 'n' ) {
+    cerr << "wrong parameters" <<endl;
+    return 1;
+  }
+  numberOfElements = atoi(argv[2]);
+  table = new int[numberOfElements];
+
+
+  inFileName = argv[3];
+  outFileName = argv[4];
   fstream inFile(inFileName);
   ofstream outFile(outFileName);
 
   char oneChar; 
-  int table[128];
-  for (int i = 0; i < 128; i++) table[i] = 0;
+  for (int i = 0; i < numberOfElements; i++) table[i] = 0;
 
   while ( inFile.good()) {
     inFile.get(oneChar);
@@ -42,7 +52,7 @@ int main(int argc, char* argv []) {
     table[(int)oneChar]++;
   }
 
-  HuffmanCode huffmanCode(table);
+  HuffmanCode huffmanCode(table, numberOfElements);
 //  huffmanCode.displaySource();
   huffmanCode.constructTable();
   huffmanCode.generateHuffmanCode();

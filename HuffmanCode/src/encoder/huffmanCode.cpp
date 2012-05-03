@@ -13,11 +13,11 @@ using std::string;
 // @Provides: mouda 
 // -------------------------------------------------------------------------- //
 
-HuffmanCode::HuffmanCode( int *table)
+HuffmanCode::HuffmanCode( int *table, int numberOfElements)
 {
   count = 0;
   totalExistingTimes = 0;
-  for (int i = 0; i < 128; i++) { 
+  for (int i = 0; i < numberOfElements; i++) { 
     if (table[i] != 0 ) count++;
     totalExistingTimes+=table[i];
   }
@@ -25,7 +25,7 @@ HuffmanCode::HuffmanCode( int *table)
   /* construct the x table */
   x = new int *[count];
   for (int i = 0; i < count; i++) x[i] = new int[2];
-  for (int i = 0, j = 0; i < 128; i++) 
+  for (int i = 0, j = 0; i < numberOfElements; i++) 
     if (table[i] != 0 ) { x[j][0] =i; x[j][1] = table[i]; j++;}  
 
 

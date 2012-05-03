@@ -1,20 +1,20 @@
 CXX=g++
 DBFLAGS=-g -D_DEBUG_ON_
 
-all: encoder
+all: dataReader
 
-encoder: main.o huffmanCode.o int2bin.o
-	$(CXX) $(DBFLAGS)  main.o  huffmanCode.o int2bin.o -o ../../bin/encoder
+dataReader: main.o huffmanCode.o nodeMgr.o 
+	$(CXX) $(DBFLAGS)  main.o  huffmanCode.o nodeMgr.o -o ../../bin/dataReader
 
 main.o: main.cpp
 	$(CXX) $(DBFLAGS) -c  main.cpp -o main.o
 
-huffmanCode.o:  huffmanCode.cpp
-	$(CXX) $(DBFLAGS) -c  huffmanCode.cpp 
+huffmanCode.o:  ../encoder/huffmanCode.cpp
+	$(CXX) $(DBFLAGS) -c  ../encoder/huffmanCode.cpp 
 
-int2bin.o:  int2bin.cpp
-	$(CXX) $(DBFLAGS) -c  int2bin.cpp
+nodeMgr:  nodeMgr.cpp
+	$(CXX) $(DBFLAGS) -c  nodeMgr.cpp 
 
 clean:
-		rm -rf *.o *.gch ../../bin/main
+		rm -rf *.o *.gch ../../bin/dataReader
 

@@ -1,14 +1,29 @@
 #include <iostream>
 #include <fstream> 
+#include <bitset>
+#include <climits>
+#include <stdlib.h>
+#include <stdio.h>
+#include <vector>
+#include "nodeMgr.h"
+#include "huffmanCode.h"
+
+#define FILELENGTH 100000
+#define NODENUM 100
+#define DATALENGTH 1000 
 
 using namespace std;
+
+bitset<9> double2binary( double input);
+
 
 int main(int argc, char* argv []) {
   
   char *inFileName;
   char *outFileName;
   char *memblock;
-  double x[100000];
+  double x[DATALENGTH];
+  string index;
 
   if (argc < 3) {
     cerr << "Missing options" << endl;
@@ -25,10 +40,15 @@ int main(int argc, char* argv []) {
   fstream inFile;
   ofstream outFile(outFileName);
   inFile.open(inFileName,ios::in );
-  for (int i = 0; i < 100000; i++) {
-    inFile >> x[i];
+
+  int i = 0;
+  while(inFile.good()) {
+    inFile >> index >> x[i];
+    i++;
   }
-  for (int i = 0; i < 100000; i++) cout<< x[i] <<endl; 
+  for (int i = 0; i < FILELENGTH; i++) {
+    outFile << x[i] << ' ' << double2binary(x[i]) << endl;
+  }
 
 
 
@@ -36,3 +56,20 @@ int main(int argc, char* argv []) {
   inFile.close();
   return 0;
 }
+
+bitset<9> double2binary( double input) {
+  bitset<9> binary;
+  binary.reset();
+  if ( input > 0 ) binary.set(1);
+  else input*=-1;
+  
+  for (int i = 8; i > 0; i--) {
+    if ( input > 1 ){
+      binary.set(i);
+      input = input - 1;
+    }
+    input*=2;
+  }
+  return binary;
+
+} 

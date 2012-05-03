@@ -8,7 +8,9 @@ W = 180;%kHz
 N0 = 10^(-12);
 T = 50; %s
 delta = 2^(-8);
+NumPerNode = 1000;
 
+fid = fopen('../outputs/RNG.out', 'wb');
 %fprintf('hello\n');
 [ x, y ] = nodeGenerate(N,300);
 G(1:N)  = 10^(-13.11) .* ((sqrt(x.*x + y.*y)*10^(-3)).^(-4.281));
@@ -30,10 +32,16 @@ sigma(1:length(x)) = 0.5;
 [ covar] = covariance(sigma,d,2500);
 
 
-X = CorrelatedGaussian(0, 1 ,N , covar );
-
-
-
+X = CorrelatedGaussian(0, 1 ,N , covar, NumPerNode );
 % write the data output into the file which we asign the name
-fid = fopen('../outputs/RNG.out', 'wb');
-fwrite(fid, X, 'double');
+for i = 1 : N
+    for j = 1 : NumPerNode 
+        fprintf(fid, '%d %f\n',i, X(j,i));
+    end
+end
+fclose('all');
+
+
+
+
+
