@@ -17,6 +17,7 @@ public:
   void constructTable();
   bool findTwoSmallestAddTogether( int column);
   void generateHuffmanCode();
+  double getAverageCodeLength() { return averageCodeLength;}
   string HuffmanEncoder(char input);
 
 
@@ -31,6 +32,7 @@ private:
   int **x;                  //store the statistic result
   int **temp;               //store the dp trace
   int **dp;                 //DP table
+  double averageCodeLength;    //entropy
   string *HuffmanCodeTable; //the Huffman code table
 
 };

@@ -17,6 +17,7 @@ HuffmanCode::HuffmanCode( int *table, int numberOfElements)
 {
   count = 0;
   totalExistingTimes = 0;
+  averageCodeLength = 0;
   for (int i = 0; i < numberOfElements; i++) { 
     if (table[i] != 0 ) count++;
     totalExistingTimes+=table[i];
@@ -157,6 +158,15 @@ void HuffmanCode::generateHuffmanCode()
     HuffmanCodeTable[temp[i][1]] = HuffmanCodeTable[temp[i][0]] + '1';
     HuffmanCodeTable[temp[i][0]] = HuffmanCodeTable[temp[i][0]] + '0';
   }
+  /* calculate the average code length */
+  int sum;
+  for (int i = 0; i < count; i++) 
+    sum += x[i][1]*HuffmanCodeTable[i].length();
+  averageCodeLength = (double)sum/totalExistingTimes;
+  
+
+
+
 //  displayHuffmanTable();
 
 }
@@ -246,6 +256,7 @@ string HuffmanCode::getHuffmanTable()
   }
   return Table;
 }
+
 
 
 

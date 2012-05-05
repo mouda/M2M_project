@@ -58,7 +58,7 @@ int main(int argc, char* argv []) {
 #endif
 
   NodeMgr nodeManager(NODENUM, DATALENGTH, totalData );
-//  nodeManager.reportNode();
+  nodeManager.reportNode();
 
   outFile.close();
   inFile.close();

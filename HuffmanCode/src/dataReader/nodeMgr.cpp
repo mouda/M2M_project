@@ -73,6 +73,7 @@ void Node::initialize( unsigned length, bitset<9>* inputs)
   _huffmanCode = new HuffmanCode(_statisticTable, _mapTable.size());
   _huffmanCode->constructTable();
   _huffmanCode->generateHuffmanCode();
+  _avergthCodeLength = _huffmanCode->getAverageCodeLength();
 }
 
 // -------------------------------------------------------------------------- //
@@ -137,6 +138,8 @@ void NodeMgr::reportNode()
   for (int i = 0; i < _nodeNumber; i++) {
     cout << "**************** [" << i << "] ***************" << endl;
     cout <<  _allNodes[i].reportData(0) << endl;
-    cout << _allNodes[i].getCodeTable() << endl;
+    //cout << _allNodes[i].getCodeTable() << endl;
+    cout << _allNodes[i].getAverageCodeLength() << endl;
+
   }
 }
