@@ -7,8 +7,14 @@
 #include <string>
 #include <cassert>
 #include "nodeMgr.h"
-#include "huffmanCode.h"
 
+using std::pair;
+using std::cout;
+using std::endl;
+using std::bitset;
+using std::string;
+using std::iterator;
+using std::map;
 // -------------------------------------------------------------------------- //
 // @Description: Node constructer and destructer implementation 
 // @Provides: mouda 
@@ -28,11 +34,11 @@ Node::~Node()
 // @Provides: mouda 
 // -------------------------------------------------------------------------- //
 
-void Node::initialize( unsigned length, std::bitset<9>* inputs)
+void Node::initialize( unsigned length, bitset<9>* inputs)
 {
   /* set the data length and assign the data */
   _dataLength = length;
-  _data = new std::bitset<9>[length];
+  _data = new bitset<9>[length];
   for (int i = 0; i < length; i++) 
     _data[i] = inputs[i];
 
@@ -40,24 +46,33 @@ void Node::initialize( unsigned length, std::bitset<9>* inputs)
   unsigned j = 0;
   for (int i = 0; i < length; i++) {
     if (_mapTable.find(_data[i].to_string()) == _mapTable.end()) {
-      _mapTable.insert( std::pair<std::string, unsigned >(_data[i].to_string(), j) );
+      _mapTable.insert( pair<string, unsigned >(_data[i].to_string(), j) );
       j++;
     }
   }
 #ifdef _DEBUG_ON_
-  std::map< std::string, unsigned >::iterator it;
+  map< string, unsigned >::iterator it;
   for ( it = _mapTable.begin(); it != _mapTable.end(); it++) 
-    std::cout << (*it).first << " => " << (*it).second << std::endl;
+    cout << (*it).first << " => " << (*it).second << endl;
 #endif
-  _statisticTable = new unsigned[_mapTable.size()];
-  for (int i = 0; i < _mapTable.size(); i++) 
+  _statisticTable = new int[_mapTable.size()];
+  for (int i = 0; i < _mapTable.size(); i++){
     _statisticTable[i] = 0; 
-  for (int i = 0; i < length; i++) 
+  } 
+  for (int i = 0; i < length; i++){ 
     _statisticTable[_mapTable.find(_data[i].to_string())->second]++;
+  }
 
-
+#ifdef _DEBUG_ON_
+  for (int i = 0; i < _mapTable.size(); i++) {
+    cout << i << ' ' << _statisticTable[i] << endl;
+  }
+#endif
 
   /* huffman encoding */
+  _huffmanCode = new HuffmanCode(_statisticTable, _mapTable.size());
+  _huffmanCode->constructTable();
+  _huffmanCode->getHuffmanTable();
 
 }
 
@@ -69,6 +84,9 @@ void Node::initialize( unsigned length, std::bitset<9>* inputs)
 void Node::resetNode()
 {
   delete [] _statisticTable;
+  delete _huffmanCode;
+  _statisticTable = 0;
+  _huffmanCode = 0;
 
 }
 
@@ -77,7 +95,7 @@ void Node::resetNode()
 // @Provides: mouda 
 // -------------------------------------------------------------------------- //
 
-std::string Node::reportData( unsigned index)
+string Node::reportData( unsigned index)
 {
   assert( index < _dataLength && index >= 0);
   return  _data[index].to_string();
@@ -89,7 +107,7 @@ std::string Node::reportData( unsigned index)
 // @Provides: mouda 
 // -------------------------------------------------------------------------- //
 
-NodeMgr::NodeMgr( unsigned nodeNum, unsigned dataLength, std::bitset<9>* inputs)
+NodeMgr::NodeMgr( unsigned nodeNum, unsigned dataLength, bitset<9>* inputs)
 {
   _nodeNumber = nodeNum;
   _allNodes = new Node[nodeNum]; 
@@ -108,7 +126,7 @@ NodeMgr::~NodeMgr()
 void NodeMgr::reportNode()
 {
   for (int i = 0; i < _nodeNumber; i++) {
-    std::cout << "**************** [" << i << "] ***************" << std::endl;
-    std::cout <<  _allNodes[i].reportData(0) << std::endl;
+    cout << "**************** [" << i << "] ***************" << endl;
+    cout <<  _allNodes[i].reportData(0) << endl;
   }
 }

@@ -6,7 +6,6 @@
 #include <stdio.h>
 #include <vector>
 #include "nodeMgr.h"
-#include "huffmanCode.h"
 
 #define FILELENGTH 100000
 #define NODENUM 100

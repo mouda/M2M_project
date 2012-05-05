@@ -4,7 +4,7 @@ DBFLAGS=-g -D_DEBUG_ON_
 all: dataReader
 
 dataReader: main.o huffmanCode.o nodeMgr.o 
-	$(CXX) $(DBFLAGS)  main.o  huffmanCode.o nodeMgr.o -o ../../bin/dataReader
+	$(CXX)   main.o  huffmanCode.o nodeMgr.o -o ../../bin/dataReader
 
 main.o: main.cpp
 	$(CXX) $(DBFLAGS) -c  main.cpp -o main.o

@@ -5,7 +5,12 @@
 #include <bitset>
 #include <map>
 #include <string>
+#include "huffmanCode.h"
 
+
+using std::string;
+using std::bitset;
+using std::map;
 
 // -------------------------------------------------------------------------- //
 // @Description: Define the class to repesent each node 
@@ -16,17 +21,19 @@ class Node{
   public:
     Node();
     ~Node();
-    void initialize( unsigned length, std::bitset<9>* inputs);
-    void resetNode();
-    std::string reportData( unsigned index);
-    double getAverageCodeLength(){return _avergthCodeLength;}
+    void    initialize( unsigned length, bitset<9>* inputs);
+    void    resetNode();
+    double    getAverageCodeLength(){return _avergthCodeLength;}
+    string    reportData( unsigned index);
+    string*   getCodeTable();
 
   private:
-    std::bitset<9>* _data;
-    std::map<std::string , unsigned> _mapTable;
-    unsigned *_statisticTable;
+    bitset<9>* _data;
+    map< string , unsigned> _mapTable;
+    int *_statisticTable;
     unsigned _dataLength;
     double _avergthCodeLength;      // As entropy if huffman encoder is used
+    HuffmanCode *_huffmanCode; 
 };
 
 // -------------------------------------------------------------------------- //
