@@ -12,7 +12,7 @@ main.o: main.cpp
 huffmanCode.o:  ../encoder/huffmanCode.cpp
 	$(CXX) $(DBFLAGS) -c  ../encoder/huffmanCode.cpp 
 
-nodeMgr:  nodeMgr.cpp
+nodeMgr.o:  nodeMgr.cpp
 	$(CXX) $(DBFLAGS) -c  nodeMgr.cpp 
 
 clean:

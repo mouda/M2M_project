@@ -51,9 +51,9 @@ void Node::initialize( unsigned length, bitset<9>* inputs)
     }
   }
 #ifdef _DEBUG_ON_
-  map< string, unsigned >::iterator it;
-  for ( it = _mapTable.begin(); it != _mapTable.end(); it++) 
-    cout << (*it).first << " => " << (*it).second << endl;
+//  map< string, unsigned >::iterator it;
+//  for ( it = _mapTable.begin(); it != _mapTable.end(); it++) 
+//    cout << (*it).first << " => " << (*it).second << endl;
 #endif
   _statisticTable = new int[_mapTable.size()];
   for (int i = 0; i < _mapTable.size(); i++){
@@ -64,16 +64,15 @@ void Node::initialize( unsigned length, bitset<9>* inputs)
   }
 
 #ifdef _DEBUG_ON_
-  for (int i = 0; i < _mapTable.size(); i++) {
-    cout << i << ' ' << _statisticTable[i] << endl;
-  }
+//  for (int i = 0; i < _mapTable.size(); i++) {
+//    cout << i << ' ' << _statisticTable[i] << endl;
+//  }
 #endif
 
-  /* huffman encoding */
+ /* huffman encoding */
   _huffmanCode = new HuffmanCode(_statisticTable, _mapTable.size());
   _huffmanCode->constructTable();
-  _huffmanCode->getHuffmanTable();
-
+  _huffmanCode->generateHuffmanCode();
 }
 
 // -------------------------------------------------------------------------- //
@@ -99,6 +98,16 @@ string Node::reportData( unsigned index)
 {
   assert( index < _dataLength && index >= 0);
   return  _data[index].to_string();
+}
+
+// -------------------------------------------------------------------------- //
+// @Description: get the huffman code table
+// @Provides: mouda
+// -------------------------------------------------------------------------- //
+
+string Node::getCodeTable()
+{
+  return _huffmanCode->getHuffmanTable();
 }
 
 // -------------------------------------------------------------------------- //
@@ -128,5 +137,6 @@ void NodeMgr::reportNode()
   for (int i = 0; i < _nodeNumber; i++) {
     cout << "**************** [" << i << "] ***************" << endl;
     cout <<  _allNodes[i].reportData(0) << endl;
+    cout << _allNodes[i].getCodeTable() << endl;
   }
 }

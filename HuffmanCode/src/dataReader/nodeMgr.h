@@ -21,19 +21,20 @@ class Node{
   public:
     Node();
     ~Node();
-    void    initialize( unsigned length, bitset<9>* inputs);
-    void    resetNode();
+    void      initialize( unsigned length, bitset<9>* inputs);
+    void      resetNode();
     double    getAverageCodeLength(){return _avergthCodeLength;}
     string    reportData( unsigned index);
-    string*   getCodeTable();
+    string    getCodeTable();
 
   private:
-    bitset<9>* _data;
-    map< string , unsigned> _mapTable;
-    int *_statisticTable;
-    unsigned _dataLength;
-    double _avergthCodeLength;      // As entropy if huffman encoder is used
-    HuffmanCode *_huffmanCode; 
+    bitset<9>*                _data;
+    map< string , unsigned>   _mapTable;
+    int*                      _statisticTable;
+    unsigned                  _dataLength;
+    double                    _avergthCodeLength;
+    // As entropy if huffman encoder is used
+    HuffmanCode               *_huffmanCode; 
 };
 
 // -------------------------------------------------------------------------- //
@@ -45,10 +46,10 @@ class NodeMgr{
   public:
     NodeMgr( unsigned nodeNum, unsigned dataLength, std::bitset<9>* inputs);
     ~NodeMgr();
-    double getAverageCodeLength(){return _avergthCodeLength;}
-    void reportNode();
+    double  getAverageCodeLength(){return _avergthCodeLength;}
+    void    reportNode();
   private:
-    Node *_allNodes;
-    unsigned _nodeNumber;
-    double _avergthCodeLength;      // As entropy if huffman encoder is used 
+    Node      *_allNodes;
+    unsigned  _nodeNumber;
+    double    _avergthCodeLength;      // As entropy if huffman encoder is used 
 };
