@@ -1,7 +1,21 @@
-\begin{figure}
-\begin{center}
-\includegraphics[width=0.8\columnwidth ,angle=0]{gym}
-\caption{A WMN video streaming topology in the gym}
-\label{gym}
-\end{center}
-\end{figure}
+\section{Algorithm}
+\subsection{Introduction to cross entropy algorithm}
+\paragraph{Motivation}
+Cross entropy is already applied to solve some complicate optimization problems, such as travelling salesman problem(TSP), and  the max-cut problem. On the other hand, cross entropy can also be used to perform rare event-simulation. Consider the property of our problem, we can figure out that if we want to determine a certain node should be chosen or not to be chosen base on the probability indicate by the algorithm output, this output must be fairly approach to 0 or 1. And this property is 
+consist of the cross entropy in rare-event simulation. Hence we would like to use cross entropy algorithm to find the optimization solution of our sensor selection problem. 
+\paragraph{Brief description}
+To apply the cross entropy algorithm. The constraint and objective must be specified, which will be 
+propose in the following subsection. After that, the CE method involves an iterative procedure where each iteration can be broken down into two phases.
+
+\begin{enumerate}
+\item Generate a random data sample (trajectories, vectors, etc.) according to a specified mechanism.
+\item Update the parameters of the random mechanism based on the data to produce “better” sample 
+in the next iteration.
+\end{enumerate}  
+After iteration which is large enough, we can make the parameter as our optimization solution.
+
+\subsection{Set up}
+Here, given the channel capacity constraint and the objective function. First, the channel 
+\subsection{Finding the optimization solution}
+
+
