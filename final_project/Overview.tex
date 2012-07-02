@@ -1,0 +1,42 @@
+\section{Overview}
+
+%\cite{belair}, SkyPilot\footnote{It is a company}, BearCom, and so
+%on.
+
+\subsection{Atmospheric dispersion modeling}
+In order to simulate the air pollution, we find out a well known air dipersion 
+model which is a partial differential equation based on the law of 
+conservation of mass. The solution of this differential equation can give us 
+a function coordination to calculate the mass concentration of every point in 
+the space.  
+
+%\cite{fixed} shows an example of the most known one, video
+%surveillance system. $\omega$
+
+\subsection{Scenario}
+In the atmospheric dispersion model we assumed that the wind speed and direction
+is already known. However, in more realize case this assumption is over ideal 
+assumption. Hence, based on this model, we relax the restriction of information 
+about wind and make the wind speed as a random variable with some resonable 
+distribution. Then we set up the  pollutant concentration sensor which distributed
+uniformly as the cellular base station. 
+
+\subsection{Algorthm}
+When the pollutant is spreading in the space, the sensor start sensing the 
+pollutant concentration nearby itself, and retrainsmitting the data back to the 
+cluster head. After that, server will reconstruct the pollutant distribution map 
+which can point out that some certain area suffer from the pollutant seriously.
+On the other hand, our wireless sensor might be restricted by the channel capacity
+ 
+
+
+%\begin{figure}
+%\includegraphics[scale=0.7 ,angle=0]{gym}
+%\caption{A WMN video streaming topology in the gym}
+%\label{gym}
+%\end{figure}
+
+%\begin{figure}
+%\includegraphics[scale=0.8 ,angle=0,bb=140 300 470 520, clip]{video}
+%\caption{The surveillance system over WMNs} \label{video}
+%\end{figure}

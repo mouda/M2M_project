@@ -1,0 +1,45 @@
+\begin{thebibliography}{1}
+\providecommand{\url}[1]{#1}
+\csname url@rmstyle\endcsname
+\providecommand{\newblock}{\relax}
+\providecommand{\bibinfo}[2]{#2}
+\providecommand\BIBentrySTDinterwordspacing{\spaceskip=0pt\relax}
+\providecommand\BIBentryALTinterwordstretchfactor{4}
+\providecommand\BIBentryALTinterwordspacing{\spaceskip=\fontdimen2\font plus
+\BIBentryALTinterwordstretchfactor\fontdimen3\font minus
+  \fontdimen4\font\relax}
+\providecommand\BIBforeignlanguage[2]{{%
+\expandafter\ifx\csname l@#1\endcsname\relax
+\typeout{** WARNING: IEEEtran.bst: No hyphenation pattern has been}%
+\typeout{** loaded for the language `#1'. Using the pattern for}%
+\typeout{** the default language instead.}%
+\else
+\language=\csname l@#1\endcsname
+\fi
+#2}}
+
+\bibitem{belair}
+http://www.belairnetworks.com, ``Delivering video over a wireless mesh
+  network,'' 2006.
+
+\bibitem{fixed}
+S.~G. Vishnu~Navda, Anand~Kashyap and R.~Izmailov, ``Real-time video stream
+  aggregation in wireless mesh network,'' \emph{Personal, Indoor and Mobile
+  Radio Communications}, pp. 1--7, September 2006.
+
+\bibitem{distortion}
+J.~N. Eric~Setton and B.~Girod, ``Rate-distortion optimized video peer-to-peer
+  multicast streaming,'' \emph{P2PMMS}, November 2005.
+
+\bibitem{GA}
+{Shiwen Mao}, {Sastry Kompella}, {Y.Thomas Hou}, {Hanif D.Sherali}, and {Scott
+  F.Midkiff}, ``Routing for multiple concurrent video sessions in wireless ad
+  hoc networks,'' \emph{IEEE Trans. on Vehicular Technology}, pp. 1229--1235,
+  2005.
+
+\bibitem{error}
+C.-N.~C. Danjue~Li, Qian~Zhang and S.~Yoo, ``Error resilient concurrent video
+  streaming over wireless wireless mesh network,'' \emph{Packet Video
+  Workshop}, April 2006.
+
+\end{thebibliography}

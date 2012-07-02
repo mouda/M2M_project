@@ -1,0 +1,122 @@
+\section{Model of Video Streaming}
+\subsection{Video Distortion Model}
+In \cite{distortion}, it introduces this video distortion model.
+For this concurrent video streaming application, video packets are
+transmitted over the wireless mesh network and need to meet their
+playout deadline. Then the decoded video distortion, $D_{dec}$, is
+given by:
+
+\begin{equation} D^{dec} = D_{enc} + D_{loss} \end{equation}
+\begin{equation} D_{enc} = D_{0} + \theta/(R-R_{0}) \end{equation}
+\begin{equation} D_{loss} = k(P_{v} + [1-P_{v}](1-P(T_v>\delta_v))) \end{equation}
+
+. In \cite{distortion}, the parameters of the model are
+$D_0=0.49$, $\theta=1222$, $R_0=10.39kbps$, $k=185$.
+
+\subsection{Network Model}
+Before we introduce the network model, we should define some
+parameters first \cite{belair,GA,fixed}. Consider a WMN with N
+nodes distributed on a plane with $c_{ij}$ as the distance between
+two nodes $i$ and $j$. Each wireless mesh node is equipped with a
+radio having transmission range $r_i$ and interference range
+$r'_i$. Hence, we can model such a WMN by a directed graph
+$\mathbf{G=G(N,L)}$, where $\mathbf{N}$ represents the set of
+nodes in the WMN, and $\mathbf{L}$ represents the set of wireless
+directed links between nodes. A direct link $\lbrace ij \rbrace$
+exists from node $i$ to node $j$ if $c_{ij} \le r_{i}$ and $i \ne
+j$. We characterize link $\lbrace ij \rbrace \in \mathbf{L}$
+using:
+
+Besides, we let the path of video clip $v$ be $L_v$, which
+includes a set of link $\lbrace ij \rbrace$. For each link
+$\lbrace ij \rbrace$ we define an index variable:
+
+\begin{equation}
+X_{ij}^v = \left\{\begin{array}{ll}
+  1,  & \lbrace ij \rbrace \in L_v\\
+  0,  & \lbrace ij \rbrace \notin L_v
+\end{array} \right. \forall \lbrace ij \rbrace \in \mathbf{L}, \forall v \in
+\mathbf{V}
+\end{equation}
+
+\subsubsection{Packet loss rate and delay}
+Assume that the bit error rate (BER) on link $\lbrace ij \rbrace$
+is $e_{ij}$, and S is the average packet size. Then the end-to-end
+packet loss rate associated with path $L_v$ can be defined as:
+\begin{equation} P_v = 1 -  \prod_{{\lbrace ij
+\rbrace \in \mathbf{L}}} (1- X ^{v}_{ij}), \forall v \in
+\mathbf{V}
+\end{equation}
+
+$P_{ij} = 1-(1-e_{ij})^S$ is the packet loss on link $\lbrace ij
+\rbrace$.
+
+\subsubsection{Interference model}
+To model the delay, we assume the delay $t_{ij}$ on link $\lbrace
+ij \rbrace$ is an exponential distribution with the probability
+density function $f_{t_{ij}}(x) \sim \lambda e^{-\lambda_{ij}x}$,
+$\forall \lbrace ij \rbrace \in \mathbf{L}$. As a result, the
+end-to-end delay for path $L_v$ can be derived as:
+
+When the number of hops along $L_v$ is not large enough, we use
+the moment generating function, $G_{T_v(s)}$, to find the
+probability that the packet streamed over path $L_v$ has delivery
+delay longer than $\delta_v$. Then we can get this probability,
+$P(T_v>\delta_v)$, when the number of hops is small as
+\cite{error}:
+
+\begin{eqnarray}
+P(T_v>\delta_v)&=&\int_{\delta_v}^{\infty} \, f_{T_v}(x)\, dx \nonumber\\
+               &=&\sum_{\lbrace ij \rbrace \in L_v} \lbrace
+(\lambda_{ij}-X_{ij}^vs)G_{T_v(s)}\rbrace \mid_{s=\lambda_{ij}} \nonumber\\
+\end{eqnarray}
+
+\subsubsection{Aggregated traffic}
+In this part, we want to model the total traffic on the link
+$\lbrace ij \rbrace$. And we define $L_v^i$ as the sub-path which
+includes all the links along the path $L_v$ up to the link
+$\lbrace ij \rbrace$. Therefore, we can derived the total traffic
+on link $\lbrace ij \rbrace$, $\rho_{ij}$, as:
+
+\begin{equation} \rho_{ij} = \sum_{v \in \mathbf{V}} \prod_{{\lbrace
+kn \rbrace \in L_v^i}} \lbrace(1- P_{kn})X ^{v}_{kn}\rbrace \times
+R_v , \forall \lbrace ij \rbrace \in \mathbf{L} \end{equation}
+
+%\subsubsection{Interference model}
+\subsection{Route selection} Moreover, the aggregate traffic
+on each link $\lbrace ij \rbrace$ should be guaranteed that it can
+not exceed its available bandwidth $R_{ij}$. Hence, the problem of
+routing loop also should be prevented. After concluding the above
+constraints, we can formulate the optimal route selection problem
+as: given a WMN $\mathbf{G(N,L)}$ and a set of video clips, for
+$\mathbf{V}$ streaming requests, find a set of paths so that the
+aggregate distortion of $\mathbf{V}$ concurrent video sessions is
+minimized. And this route selection problem can be mathematic
+formulated as:
+
+\begin{itemize}
+\item Minimize:
+\begin{equation}
+\sum_{v \in \mathbf{V)}} D_v
+\end{equation}
+\item Subject to:
+
+\begin{equation}
+\rho_{ij} \le R_{ij}, \forall \lbrace ij \rbrace \in \mathbf{L}
+\end{equation}
+
+\begin{eqnarray}
+\sum_{j:\lbrace ij \rbrace \in L_v} X_{ij}^v
+\left\{\begin{array}{ll}
+  =0,    & i: i \in L_v, L_v^i = \Phi\\
+  \le1,  & otherwise
+\end{array} \right.,\nonumber\\
+\forall i \in \mathbf{N}, \forall v \in \mathbf{V}
+\end{eqnarray}
+
+\end{itemize}
+
+where $D_v$ is the average distortion of received video clip $v$
+at the receive node $\gamma_v$. (10) is the rate constraint to
+satisfy. (11), (12), and (13) guarantee each path $L_v$ provides a
+loop-free connection.
