@@ -42,7 +42,7 @@ source.z = 10;  % height (m)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Sensor information setting 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-recept.n = 300; % # of receptors
+recept.n = 100; % # of receptors
 recept.x = (rand(recept.n, 1) - 0.5) * (xlim(2) - xlim(1)); % x location (m)
 recept.y = (rand(recept.n, 1) - 0.5) * (ylim(2) - ylim(1)); % y location (m)
 recept.z = zeros(recept.n, 1);  % height (m)
