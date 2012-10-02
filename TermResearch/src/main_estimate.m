@@ -15,3 +15,9 @@ Probability = 0.999;
 sigmaForEachSensor = abs(randn(recept.n,1)*10^(-3));
 
 % Specisfy which nodes should be control the sample times 
+onesPerColumn = 4;
+SelectVector = zeros(1,recept.n);
+randRows=randperm(recept.n);
+rowsWithOne=randRows(1:onesPerColumn);
+SelectVector(rowsWithOne)=true;
+%[ E_value E_variance ] = estimate(recept,);

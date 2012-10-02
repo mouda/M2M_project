@@ -1,0 +1,16 @@
+
+this is the term project of the research
+
+we would like to apply the cross entropy algorithm to find the best result 
+
+of given the random generate sensor node.
+
+we formulate two objective function:
+
+1. apply the entropy objective function as the previous work
+2. apply the MSE objective function as the perfect result
+
+Throught this procedure we can plot three main curves, first is the lower bound
+of curve whis is construct by thaking the entropy as the objective function, the second curve is the real MSE by selecting the transmission node, which is reconstruct by the air dispersion modeling equcation.
+
+The third curves is construct by taking the MSE as the objective function and consider the precise value of the simulation result.

@@ -7,6 +7,7 @@ C=chol(sigma);
 %Transform the input to 3 channels of correlated output.
 X=C'*R;
 X=X';
+size(X)
 % Let's see whether the covariance matrix of X now.
 cov(X);
 % Write Data to binary file

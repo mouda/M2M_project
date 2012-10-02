@@ -21,14 +21,14 @@ class Node{
   public:
     Node();
     ~Node();
-    void      initialize( unsigned length, bitset<9>* inputs);
+    void      initialize( unsigned length, bitset<8>* inputs);
     void      resetNode();
     double    getAverageCodeLength(){return _avergthCodeLength;}
     string    reportData( unsigned index);
     string    getCodeTable();
 
   private:
-    bitset<9>*                _data;
+    bitset<8>*                _data;
     map< string , unsigned>   _mapTable;
     int*                      _statisticTable;
     unsigned                  _dataLength;
@@ -44,7 +44,7 @@ class Node{
 
 class NodeMgr{
   public:
-    NodeMgr( unsigned nodeNum, unsigned dataLength, std::bitset<9>* inputs);
+    NodeMgr( unsigned nodeNum, unsigned dataLength, std::bitset<8>* inputs);
     ~NodeMgr();
     double  getAverageCodeLength(){return _avergthCodeLength;}
     void    reportNode();

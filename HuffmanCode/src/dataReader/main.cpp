@@ -13,7 +13,7 @@
 
 using namespace std;
 
-bitset<9> double2binary( double input);
+bitset<8> double2binary( double input);
 
 
 int main(int argc, char* argv []) {
@@ -23,7 +23,7 @@ int main(int argc, char* argv []) {
   char *memblock;
   double x[FILELENGTH];
   string index;
-  bitset<9> *totalData;
+  bitset<8> *totalData;
 
   if (argc < 3) {
     cerr << "Missing options" << endl;
@@ -47,7 +47,7 @@ int main(int argc, char* argv []) {
     i++;
   }
   /* allocate the data table */
-  totalData = new bitset<9>[FILELENGTH];
+  totalData = new bitset<8>[FILELENGTH];
   for (int i = 0; i < FILELENGTH; i++) 
     totalData[i] =  double2binary(x[i]);
 
@@ -65,13 +65,15 @@ int main(int argc, char* argv []) {
   return 0;
 }
 
-bitset<9> double2binary( double input) {
-  bitset<9> binary;
+bitset<8> double2binary( double input) {
+  bitset<8> binary;
   binary.reset();
-  if ( input > 0 ) binary.set(1);
-  else input*=-1;
+  if ( input <  0 ){
+    binary.set(7);
+    input*=-1;
+  }
   
-  for (int i = 8; i > 0; i--) {
+  for (int i = 6; i >=0 ; i--) {
     if ( input > 1 ){
       binary.set(i);
       input = input - 1;

@@ -34,11 +34,11 @@ Node::~Node()
 // @Provides: mouda 
 // -------------------------------------------------------------------------- //
 
-void Node::initialize( unsigned length, bitset<9>* inputs)
+void Node::initialize( unsigned length, bitset<8>* inputs)
 {
   /* set the data length and assign the data */
   _dataLength = length;
-  _data = new bitset<9>[length];
+  _data = new bitset<8>[length];
   for (int i = 0; i < length; i++) 
     _data[i] = inputs[i];
 
@@ -117,7 +117,7 @@ string Node::getCodeTable()
 // @Provides: mouda 
 // -------------------------------------------------------------------------- //
 
-NodeMgr::NodeMgr( unsigned nodeNum, unsigned dataLength, bitset<9>* inputs)
+NodeMgr::NodeMgr( unsigned nodeNum, unsigned dataLength, bitset<8>* inputs)
 {
   _nodeNumber = nodeNum;
   _allNodes = new Node[nodeNum]; 
@@ -137,9 +137,9 @@ void NodeMgr::reportNode()
 {
   for (int i = 0; i < _nodeNumber; i++) {
     cout << "**************** [" << i << "] ***************" << endl;
-    cout <<  _allNodes[i].reportData(0) << endl;
-    //cout << _allNodes[i].getCodeTable() << endl;
-    cout << _allNodes[i].getAverageCodeLength() << endl;
+  //  cout <<  _allNodes[i].reportData(0) << endl;
+    cout << _allNodes[i].getCodeTable() << endl;
+  //  cout << _allNodes[i].getAverageCodeLength() << endl;
 
   }
 }
